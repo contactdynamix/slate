@@ -70,8 +70,8 @@ Gets a list of survey interactions as a JSON array of interaction resources.
 | _limit | The number of matching interactions to return. | integer between 1 and 1000 | 10 |
 | _offset | The row number to start at if more than _limit interactions are found. | integer | 0 |
 | _order | The order of ID that results should be returned in. | ‘ASC’: earliest first or ‘DESC’: most recent first  | Default order is by current interaction status. |
-| _include_responses | Whether or not to include question responses in JSON. When true, response objects (see 3.2) will be appended in an array under the “responses” field. | boolean | FALSE |
-| _include_data | Whether or not to include interaction data in JSON. When true, interaction data objects (see 4.2) will be appended in an array under the “interaction_data” field. | boolean | FALSE |
+| _include_responses | Whether or not to include question responses in JSON. When true, response objects (see [Responses](#responses)) will be appended in an array under the “responses” field. | boolean | FALSE |
+| _include_data | Whether or not to include interaction data in JSON. When true, interaction data objects (see [Interaction Data](#interaction-data)) will be appended in an array under the “interaction_data” field. | boolean | FALSE |
 | email | The email address to be used in surveying. | An email address | empty |
 | survey_type | The survey medium to use. | inbound, outbound, sms | none |
 | scheduled_at | The exact time the interaction was scheduled for | dateTime | none |

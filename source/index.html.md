@@ -9,8 +9,8 @@ toc_footers:
 
 includes:
   - interactions
-  - responses
   - interaction_data
+  - responses
   - surveys
   - questions
   - users
@@ -21,7 +21,11 @@ search: true
 
 # Introduction
 
-Welcome to the Survey Dynamix API!
+Welcome to the Survey Dynamix REST API Reference v0.13!
+
+The Survey Dynamix API allows you to programmatically add survey interactions, retrieve results and even perform surveys via your own applications.
+
+This page details all the API resources you will need to create powerful integrations with Survey Dynamix.
 
 # Using the API
 
