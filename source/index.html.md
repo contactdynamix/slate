@@ -10,6 +10,10 @@ toc_footers:
 includes:
   - interactions
   - responses
+  - interaction_data
+  - surveys
+  - questions
+  - users
   - errors
 
 search: true

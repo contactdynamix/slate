@@ -84,13 +84,14 @@ Gets a list of survey interactions as a JSON array of interaction resources.
 
 ## Add New Interaction
 
-> This code will create an email interaction for respondent@example.com on survey with ID = 52:
+> This code will create an email interaction for respondent@example.com on survey with ID = 52 to be sent in 5 minutes:
 
 ```shell
 curl -X POST   "https://surveydynamix.com/api/interactions" \
     -d "survey_id=52" \
     -d "survey_type=email" \
     -d "email=respondent@example.com" \
+    -d "scheduled_at=Now + 5 minutes" \
     -u Customer_UUID:Auth_Token
 ```
 
@@ -171,7 +172,7 @@ curl -X PUT   "https://surveydynamix.com/api/interactions/891234" \
 
 Updates a specified interaction with new properties supplied in a JSON object.
 
-Note that the new JSON object must have the same interaction ID as the resource you are attempting to update.
+Note that the new JSON object must have the same ID as the resource you are attempting to update.
 
 ### URI
 `/interactions/{interaction_id}`
@@ -251,7 +252,7 @@ curl -X POST   "https://surveydynamix.com/api/interactions/891234/start_survey" 
      "http://Nth_sound_file_url.mp3",],
   "survey_completed": 0,
   "current_question":{
-    #question resource object for current question
+    #question resource object for current question if survey_completed = 0
   }
 }
 ```
@@ -293,7 +294,7 @@ curl -X POST   "https://surveydynamix.com/api/interactions/891234/submit_respons
      "http://Nth_sound_file_url.mp3",],
   "survey_completed": 0,
   "current_question":{
-    #question resource object for current question
+    #question resource object for current question if survey_completed = 0
   }
 }
 ```
