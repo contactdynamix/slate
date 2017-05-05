@@ -185,7 +185,7 @@ Note that the new JSON object must have the same ID as the resource you are atte
 | interaction | A JSON object representing the interaction in the same format as returned by get and create requests with the fields to update altered in text. | JSON String | Required |
 
 
-## Get Responses List for Interaction
+## Get Responses List By Interaction
 
 > This code will return a list of survey response resources associated with the interaction resource with ID = 891234:
 
@@ -207,7 +207,7 @@ This works the same as a GET call to the /responses resource with the interactio
 See [Get Responses List.](#get-responses-list)
 
 
-## Get Interaction Data List for Interaction
+## Get Interaction Data List By Interaction
 
 > This code will return a list of interaction data resources associated with the interaction resource with ID = 891234:
 

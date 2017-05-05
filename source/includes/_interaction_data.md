@@ -118,7 +118,7 @@ Adds a custom key value pair associated with a specified interaction
 
 ## Update Interaction Data
 
-> This code will create update an existing key value pair in the interaction data resource with ID = 12214125 to foo=baz:
+> This code will update an existing key value pair in the interaction data resource with ID 12214125 to foo=baz:
 
 ```shell
 curl -X PUT   "https://surveydynamix.com/api/interaction_data/12214125" \
