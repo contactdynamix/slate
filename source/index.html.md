@@ -21,7 +21,7 @@ search: true
 
 # Introduction
 
-Welcome to the Survey Dynamix REST API Reference v0.13!
+Welcome to the Survey Dynamix REST API Reference v0.14!
 
 The Survey Dynamix API allows you to programmatically add survey interactions, retrieve results and even perform surveys via your own applications.
 

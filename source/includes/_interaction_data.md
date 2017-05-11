@@ -41,6 +41,13 @@ curl -X GET   "https://surveydynamix.com/api/interaction_data?interaction_id=891
     -u Customer_UUID:Auth_Token
 ```
 
+> This code will return a JSON array containing just the interaction data object with custom key = foo for the interaction resource with ID = 891234:
+
+```shell
+curl -X GET   "https://surveydynamix.com/api/interaction_data?interaction_id=891234&custom_key=foo" \
+    -u Customer_UUID:Auth_Token
+```
+
 Gets a list of interaction data resources associated with a survey or interaction resource.
 
 At least one of `survey_id` or `interaction_id` must be specified.
@@ -86,9 +93,9 @@ Returns the JSON object for an interaction data resource specified by `{interact
 None
 
 
-## Add New Interaction Data
+## Set Interaction Data
 
-> This code will create add the custom key value pair foo=bar to the interaction resource with ID = 891234:
+> This code will add the custom key value pair foo=bar to the interaction resource with ID = 891234:
 
 ```shell
 curl -X POST   "https://surveydynamix.com/api/interaction_data" \
@@ -98,7 +105,21 @@ curl -X POST   "https://surveydynamix.com/api/interaction_data" \
     -u Customer_UUID:Auth_Token
 ```
 
-Adds a custom key value pair associated with a specified interaction
+> This code will update the existing custom key value pair to foo=baz:
+
+```shell
+curl -X POST   "https://surveydynamix.com/api/interaction_data" \
+    -d "interaction_id=891234" \
+    -d "custom_key=foo" \
+    -d "custom_value=baz" \
+    -u Customer_UUID:Auth_Token
+```
+
+Adds a custom key value pair associated with a specified interaction.
+
+If the custom key already exists for that interaction, it is overwritten with the new value.
+
+The updated interaction data JSON object will be returned.
 
 ### URI
 `/interaction_data`
@@ -113,34 +134,6 @@ Adds a custom key value pair associated with a specified interaction
 | interaction_id 	| The ID of the interaction resource the interaction data is associated with. 	| integer 	| Required 	|
 | custom_key 	| The custom key of the interaction data. 	| A string consisting only of alphanumeric characters and underscores and starting with a letter 	| Required 	|
 | custom_value 	| The custom value of the interaction data. 	| string	| Required 	|
-
-
-
-## Update Interaction Data
-
-> This code will update an existing key value pair in the interaction data resource with ID 12214125 to foo=baz:
-
-```shell
-curl -X PUT   "https://surveydynamix.com/api/interaction_data/12214125" \
-    -d "interaction_data={\"id\": 12214125,\"interaction_id\": 24062,\"custom_key\": \"foo\",\"custom_value\": \"baz\",\"created_at\": \"2016-02-19 10:30:02\",\"updated_at\": \"2016-02-19 10:30:02\"}" \
-    -u Customer_UUID:Auth_Token
-```
-
-Updates a specified interaction data resource with new properties supplied in a JSON object.
-
-Note that the new JSON object must have the same ID as the resource you are attempting to update.
-
-### URI
-`/interaction_data/{interaction_data_id}`
-
-### Method
-`PUT`
-
-### Parameters
-
-| Name 	| Description 	| Allowed Values 	| Default 	|
-|-------------------	|------------------------------------------------------------------------	|------------------------------	|---------	|
-| interaction_data 	| A JSON object representing the interaction data in the same format as returned by get and create requests. 	| JSON string 	| Required 	|
 
 
 ## Delete Interaction Data
