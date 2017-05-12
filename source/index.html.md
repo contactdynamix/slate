@@ -41,7 +41,7 @@ The Survey Dynamix REST API is served over HTTPS. To ensure data privacy, unencr
 
 ## Authentication
 
-> To authorize, use this code:
+> To authorise, use this code:
 
 ```shell
 # With shell, you can just pass the API credentials with each request
