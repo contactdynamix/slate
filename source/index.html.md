@@ -21,7 +21,7 @@ search: true
 
 # Introduction
 
-Welcome to the Survey Dynamix REST API Reference v0.14!
+Welcome to the Survey Dynamix REST API Reference v0.15!
 
 The Survey Dynamix API allows you to programmatically add survey interactions, retrieve results and even perform surveys via your own applications.
 
@@ -41,17 +41,80 @@ The Survey Dynamix REST API is served over HTTPS. To ensure data privacy, unencr
 
 ## Authentication
 
-> To authorise, use this code:
+### OAuth2
+
+The Survey Dynamix API supports authorisation code grant and personal access token methods. This documentation assumes you are already familiar with OAuth2 grant flows.
+
+### Authorisation Code Grant
+
+> To authorise API calls using an Authorisation Code, use this code:
 
 ```shell
-# With shell, you can just pass the API credentials with each request
+# Using an access token, pass the token as part of the authorisation header with each request
+curl "api_endpoint_here" \
+  -H "Authorization: Bearer {Token}"
+```
+
+> Make sure to replace `{Token}` with the access token.
+
+Survey Dynamix users with admin privileges can create OAuth clients [here](https://surveydynamix.com/customer_settings#tab_integrations).
+
+We use the standard OAuth2 authorisation code flow. To start, the client application must redirect the user to the Survey Dynamix authorisation endpoint at `http://surveydynamix.com/oauth/authorize`. The redirect must include the following parameters:
+
+* `response_type`: This will be set to `code`.
+* `client_id`: This is listed in the OAuth Clients table after you have created a client.
+* `client_secret`: This is listed in the OAuth Clients table and should be kept secure.
+* `redirect_uri`: This must match the redirect URL that was specified when creating the client and will be used for the callback endpoint when the user grants access.
+
+Once the user has been redirected, they will be presented with a form allowing them to either approve or cancel the request. If the request is approved, the user will be redirected back to the redirect URL. This redirect will include a authorisation code.
+
+To convert the authorisation code into an access token, the client application must make a final POST request to the access token endpoint at `http://surveydynamix.com/oauth/token` with the following parameters:
+
+* `grant_type`: This will be set to `authorization_code`
+* `client_id`, `client_secret`, & `redirect_uri`: These will be the same as in the authorisation redirect.
+* `code`: Use the authorisation code included in the post-authorisation redirect.
+
+This request will return a JSON response containing the `access_token` attribute.
+
+To authenticate using an access token add an authorisation header to each request in the following format:
+
+`Authorization: Bearer {access token}`
+
+
+### Personal Access Tokens
+
+> To authorise API calls using a Personal Access Token, use this code:
+
+```shell
+# Using personal access token auth, pass the token as part of the authorisation header with each request
+curl "api_endpoint_here" \
+  -H "Authorization: Bearer {Token}"
+```
+
+> Make sure to replace `{Token}` with your  personal access token.
+
+Survey Dynamix users with admin privileges can create personal access tokens to authenticate API calls [here](https://surveydynamix.com/customer_settings#tab_integrations).
+
+Personal access tokens are shown to the user *only once* upon creation and should be stored securely.
+
+To authenticate using a personal access token add an authorisation header to each request in the following format:
+
+`Authorization: Bearer {personal access token}`
+
+
+### Basic Authentication
+
+> To authorise API calls using Basic Authentication, use this code:
+
+```shell
+# Using Basic Auth, pass the default API credentials with each API call
 curl "api_endpoint_here" \
   -u CustomerUUID:AuthToken
 ```
 
 > Make sure to replace `CustomerUUID:AuthToken` with your specific api credentials.
 
-All requests to this API use HTTP Basic Authentication. You will use your customer Uuid as the username and your generated auth token as the password.
+Basic Authentication is the simplest authentication method that Survey Dynamix offers. You will use your customer Uuid as the username and your generated auth token as the password.
 
 You can find your customer authentication credentials on the customer settings page [here](https://surveydynamix.com/customer_settings#tab_customer-credentials)
 
@@ -59,4 +122,5 @@ username: `Customer Uuid`
 
 password: `Auth Token`
 
-Verification is also possible using the auth_token parameter for requests present in version 0.9 of the API to support backwards compatibility. However this system of authentication is deprecated and may not be supported in future versions.
+
+<aside class="notice" >Note: We recommend that basic authentication be used only for testing API calls. For production integrations, the OAuth2 authorisation code grant and personal access tokens provide a greater level of control and security. </aside>
