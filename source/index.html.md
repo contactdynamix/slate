@@ -14,6 +14,7 @@ includes:
   - surveys
   - questions
   - users
+  - phone_numbers
   - errors
 
 search: true

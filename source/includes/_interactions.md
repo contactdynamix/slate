@@ -105,7 +105,7 @@ Creates a survey interaction with the specified parameters.
 | Name | Description | Allowed Values | Default
 | --- | --- | --- | --- |
 | survey_id | The ID of the survey you wish to add the interaction to. Found on the top right of the relevant survey page. | integer | Required |
-| _force_new | Force a new interaction to be added even if a pending interaction with the same number and survey ID exists. | boolean | FALSE |
+| _force_new | Force a new interaction to be added even if a pending interaction with the same phone number and survey ID exists. | boolean | FALSE |
 | phone_number | The phone number to be used in surveying. Required for voice and sms interactions. | A 12 character string in the proper phone number format | empty |
 | email | The email address to be used in surveying. Required for email interactions. | An email address | empty |
 | survey_type | The survey medium to use. | inbound, outbound, sms, web, email | web |
@@ -114,6 +114,8 @@ Creates a survey interaction with the specified parameters.
 | call_type | A standard string field for report aggregation | string | empty |
 | agent_id | A string corresponding to an agent ID. Will allow an agent user with this ID to see the interaction in the dashboard, and will be used to aggregate for agent rankings. | string | empty |
 | Custom Metadata| parameters not otherwise listed in this table will be added as interaction data resources associated with the created interaction. | The key must only include alphanumeric characters and underscores and must start with a letter. The value may be any string. | none |
+
+<aside class="notice"> Interactions cannot be added if a pending interaction with the same phone number and survey id exists, unless the _force_new parameter is set to true. If you attempt to add an interaction like this, a 409(Conflict) response will be returned. </aside>
 
 ## Get Specific Interaction
 
