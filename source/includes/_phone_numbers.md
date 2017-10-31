@@ -38,7 +38,7 @@ curl -X GET   "https://surveydynamix.com/api/phone_numbers/0499999999?country_co
     -u Customer_UUID:Auth_Token
 ```
 
-Gets a the specific details of a phone number. If the phone number is not valid, a 404 response will be returned instead.
+Gets the specific details of a phone number. If the phone number is not valid, a 404 response will be returned instead.
 
 ### URI
 `/phone_numbers/{phone_number}`

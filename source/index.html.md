@@ -22,7 +22,7 @@ search: true
 
 # Introduction
 
-Welcome to the Survey Dynamix REST API Reference v0.15!
+Welcome to the Survey Dynamix REST API Reference version 1.0.0
 
 The Survey Dynamix API allows you to programmatically add survey interactions, retrieve results and even perform surveys via your own applications.
 
@@ -43,6 +43,9 @@ The Survey Dynamix REST API is served over HTTPS. To ensure data privacy, unencr
 ## Authentication
 
 ### OAuth2
+<aside class="warning">
+Note: OAuth2 is temporarily unavailable as an authentication method. Use basic authentication instead.
+</aside>
 
 The Survey Dynamix API supports authorisation code grant and personal access token methods. This documentation assumes you are already familiar with OAuth2 grant flows.
 
@@ -122,6 +125,3 @@ You can find your customer authentication credentials on the customer settings p
 username: `Customer Uuid`
 
 password: `Auth Token`
-
-
-<aside class="notice" >Note: We recommend that basic authentication be used only for testing API calls. For production integrations, the OAuth2 authorisation code grant and personal access tokens provide a greater level of control and security. </aside>
